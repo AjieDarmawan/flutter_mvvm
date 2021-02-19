@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_mmvm/constant/constant.dart';
 import 'package:flutter_app_mmvm/models/LoginModel.dart';
 import 'package:flutter_app_mmvm/shared/theme.dart';
+import 'package:flutter_app_mmvm/view/SiginUp.dart';
 import 'package:flutter_app_mmvm/view/widget/GeneralPage.dart';
 import 'package:flutter_app_mmvm/viewmodels/userviewmodel.dart';
 
@@ -113,6 +114,19 @@ class _SignInState extends State<SignIn> {
                   }
                 });
               },
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: 45,
+            margin: EdgeInsets.only(top: 24),
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => SignUp()));
+              },
+              child: Text("Register"),
             ),
           )
         ],

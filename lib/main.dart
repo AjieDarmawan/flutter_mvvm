@@ -14,11 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, title: 'MY App', home: SignIn(),routes: <String,WidgetBuilder>{
-        
-          HOMEPAGE :  (BuildContext context) => HalamanUtama(),
-       
-
-        },);
+      debugShowCheckedModeBanner: true,
+      title: 'MY App',
+      home: SignIn(),
+      routes: <String, WidgetBuilder>{
+        HOMEPAGE: (BuildContext context) => HalamanUtama(),
+      },
+    );
   }
 }
