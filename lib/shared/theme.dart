@@ -5,7 +5,6 @@ import 'package:supercharged/supercharged.dart';
 
 const double defaultMargin = 24;
 
-
 Color greyColor = "8D92A3".toColor();
 Color mainColor = "FFC700".toColor();
 TextStyle greyFontStyle = GoogleFonts.poppins().copyWith(color: greyColor);
@@ -19,3 +18,24 @@ Widget loadingIndicator = SpinKitFadingCircle(
   size: 45,
   color: mainColor,
 );
+
+String emailValidator(String value) {
+  //Toast.show(value, context, duration: 3, gravity: Toast.BOTTOM);
+  if (value.length == 0) {
+    // Toast.show("Email Tidak Boleh Kosong", context,
+    //     duration: 3, gravity: Toast.BOTTOM);
+    return "Email is Required";
+  } else if (!value.contains('@')) {
+    return "Email is Invalid";
+  } else {
+    return null;
+  }
+}
+
+String nameValidator(String value) {
+  if (value.length < 4) {
+    return "name must be length 4";
+  } else {
+    return null;
+  }
+}

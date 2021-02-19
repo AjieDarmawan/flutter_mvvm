@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_app_mmvm/models/LoginModel.dart';
+import 'package:flutter_app_mmvm/models/ModelRegister.dart';
+import 'package:flutter_app_mmvm/models/SumberModel.dart';
 import 'package:flutter_app_mmvm/models/UserModel.dart';
 import 'package:http/http.dart' as http;
 
@@ -87,5 +89,44 @@ class UserViewModel {
       print("gagal");
       return null;
     }
+  }
+
+  Future<List<SumberModel>> sumber() async {
+    try {
+      http.Response hasil = await http.get(
+          Uri.encodeFull(
+              "https://testing.gawe.id/api_apps/master_api/get_sumber"),
+          headers: {"Accept": "application/json"});
+      if (hasil.statusCode == 200) {
+        print("data sumber success");
+        final data = sumberModelFromJson(hasil.body);
+        return data;
+      } else {
+        print("error status " + hasil.statusCode.toString());
+        return null;
+      }
+    } catch (e) {
+      print("error catch $e");
+      return null;
+    }
+  }
+
+  Future register(
+      String nama, String email, String password, no_hp, sumber) async {
+    final response = await http
+        .post("https://testing.gawe.id/api_apps/apps/register", body: {
+      'nama': nama,
+      'email': email,
+      'password': password,
+      'no_hp': no_hp,
+      'sumber': sumber,
+    });
+
+    final jsondata = jsonDecode(response.body);
+    ModelRegister listData = ModelRegister.fromJson(jsondata);
+
+    print("registrasi${jsondata}");
+
+    return listData;
   }
 }
